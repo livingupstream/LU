@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Upstream — Foundations</title>
+<style>
+  body {background:#fff; color:#000; font-family:Georgia, serif; line-height:1.7; max-width:640px; margin:auto; padding:20px;}
+  h1,h2,h3 {font-family:'Palatino Linotype', serif;}
+  input, button {width:100%; padding:12px; margin-top:12px; font-size:16px; box-sizing:border-box;}
+  button {background:#000; color:#fff; border:none; cursor:pointer;}
+  #message {margin-top:12px; font-size:14px; opacity:0.7;}
+  footer {margin-top:40px; font-size:14px; opacity:0.6;}
+</style>
+</head>
+<body>
+
+<h1>Living Upstream</h1>
+<h2>Foundations</h2>
+
+<p>
+This path is shared quietly, by invitation.  
+If you have received the word, enter it below to continue.
+</p>
+
+<input id="pw" type="password" placeholder="Enter the word">
+<button onclick="unlock()">Continue</button>
+
+<p id="message"></p>
+
+<footer>
+<p>
+© Living Upstream. Shared in trust.
+</p>
+</footer>
+
+<script>
+const PASSWORD = "upstream"; // change this to your secret word
+
+function unlock(){
+  const entered = document.getElementById("pw").value.trim();
+  const msg = document.getElementById("message");
+  
+  if(entered === PASSWORD){
+    localStorage.setItem("lu_access","granted");
+    window.location.href = "read.html";
+  } else {
+    msg.textContent = "The word you entered does not open this gate. Take a breath and try again, or check with the person who shared it with you.";
+    msg.style.color = "crimson";
+  }
+}
+
+// Optional: clear message if user types again
+document.getElementById("pw").addEventListener("input", function(){
+  document.getElementById("message").textContent = "";
+});
+</script>
+
+</body>
+</html>
